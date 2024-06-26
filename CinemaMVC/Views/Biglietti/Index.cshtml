@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CinemaMVC.Models.Ticket>
+
+<h2>Biglietti Venduti</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Sala</th>
+            <th>Tipo Biglietto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+                <td>@ticket.Nome</td>
+                <td>@ticket.Cognome</td>
+                <td>@ticket.Sala</td>
+                <td>@ticket.TipoBiglietto</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Statistica Vendite</h2>
+<ul>
+    @foreach (var sala in CinemaMVC.Models.Cinema.CapienzaSale.Keys)
+    {
+        <li>@sala: @CinemaMVC.Models.Cinema.GetBigliettiVenduti(sala) biglietti venduti, @CinemaMVC.Models.Cinema.GetBigliettiRidottiVenduti(sala) ridotti</li>
+    }
+</ul>
+
+<a href="/Biglietti/Create" class="btn btn-primary">Nuovo Biglietto</a>
